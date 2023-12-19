@@ -1,6 +1,6 @@
 # sonarqube-iac
 
-Sonarqube for Gitlab Infrastructure As Code using
+Sonarqube for Gitlab Infrastructure As Code using vm.
 
 
 ### Prerequisites
