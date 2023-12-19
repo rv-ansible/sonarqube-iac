@@ -1,0 +1,14 @@
+---
+
+- name: Create systemd nexus
+  template:
+    src: nexus.service.j2
+    dest: "/etc/systemd/system/nexus.service"
+    mode: '0755' 
+    owner: root
+
+- name: Daemon reload
+  shell: systemctl daemon-reload    
+  
+- name: Start using the script
+  include_tasks: start_stop.yml

@@ -1,0 +1,6 @@
+---
+
+- name: rv-common
+  src: https://github.com/rv-ansible/rv-common.git
+  scm: git
+  version: main

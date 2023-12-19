@@ -1,0 +1,22 @@
+---
+
+- name: git clone 
+  ansible.builtin.git:
+    repo: "{{git_plugin}}"
+    dest: /tmp/nexus-casc-plugin 
+    single_branch: yes
+    version: v"{{nexus_ver}}".0
+    depth: 1
+    update: yes
+    force: yes
+
+- name: Create plugin package
+  shell: ./mvnw package
+  args:
+    chdir: /tmp/nexus-casc-plugin                       
+
+- name: Copy the plugin to ansible
+  ansible.builtin.fetch:
+    src: /tmp/nexus-casc-plugin/target/nexus-casc-plugin-{{nexus_ver}}-bundle.kar
+    dest: /tmp  
+

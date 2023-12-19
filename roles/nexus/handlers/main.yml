@@ -1,0 +1,13 @@
+---
+  
+- name: Restart nexus service
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: nexus
+  notify: "Wait for nexus to start listening on port 8081"      
+
+- name: Wait for nexus to start listening on port 8081
+  ansible.builtin.wait_for:
+    port: 8081
+    host: 0.0.0.0
+    

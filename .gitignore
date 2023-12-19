@@ -1,0 +1,8 @@
+*.retry
+*.txt
+*.log
+id_rsa*
+*.tar.gz
+*.zip
+vault_pass
+*.csv

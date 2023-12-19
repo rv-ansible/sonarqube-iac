@@ -1,0 +1,41 @@
+---
+
+- name: Save init password to bashrc
+  shell: |
+         echo "export NEXUS_PASSWD=`cat /opt/sonatype/sonatype-work/nexus3/admin.password`" >> /home/nexus/.bashrc
+
+- name: Enable IAC
+  shell: |
+         grep nexus.scripts.allowCreation=true /opt/sonatype/sonatype-work/nexus3/etc/nexus.properties || echo "nexus.scripts.allowCreation=true" >> /opt/sonatype/sonatype-work/nexus3/etc/nexus.properties
+
+- name: Copy nexus.yml
+  template:
+    src: nexus.yml.j2
+    dest: "/opt/nexus.yml"
+    mode: '0755' 
+    owner: nexus
+    group: nexus
+                
+- name: Change attribute and ownership
+  include_tasks: chown.yml
+
+- name: Start using the script
+  include_tasks: start_stop.yml
+
+- name: Cleanup 
+  shell: | 
+         rm -f /opt/nexus*.tar.gz*
+         rm -f /opt/nexus.yml    
+         sed -i 's/nexus.scripts.allowCreation=true//'  /opt/sonatype/sonatype-work/nexus3/etc/nexus.properties  
+
+- name: End message
+  shell: |
+         echo "********************************************************************************"
+         echo "* Please do the first login to the $BASE_URL, change the password and save it! *"  
+         echo "* To finish the Nexus Sonatype Setup.                                          *"
+         echo "********************************************************************************"
+  become_user: nexus        
+
+- name: Finally start nexus with daemon service
+  shell: echo "Restart nexus daemon"
+  notify: "Restart nexus service"       

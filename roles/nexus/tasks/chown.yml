@@ -1,0 +1,8 @@
+---
+
+- name: update attribute and ownership
+  shell: | 
+         chown -R nexus:nexus /opt/sonatype/nexus
+         chown -R nexus:nexus /opt/sonatype/sonatype-work
+         chmod -R 755 /opt/sonatype/nexus
+         chmod -R 755 /opt/sonatype/sonatype-work

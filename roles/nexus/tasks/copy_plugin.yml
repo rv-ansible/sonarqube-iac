@@ -1,0 +1,13 @@
+---
+
+- name: Get the plugin name
+  shell: echo {{ groups['plugin'] }} 
+  register: reg
+
+- set_fact: 
+    vm_name: "{{reg.stdout | replace('[','') | replace(']','')}}"
+
+- name: copy the plugin to nexus
+  ansible.builtin.copy:
+    src: "/tmp/{{ vm_name }}/tmp/nexus-casc-plugin/target/nexus-casc-plugin-3.62.0-01-bundle.kar"
+    dest: /opt/sonatype/nexus/deploy/  
