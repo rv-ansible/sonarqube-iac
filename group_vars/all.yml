@@ -23,8 +23,8 @@ bashrc_env:
   - "export SONAR_JDBC_URL="
 
 security_limits_list:
-  - "sonarqube   -   nofile   65536"  
-  - "sonarqube   -   nproc    4096"  
+  - "{{ app.name }}   -   nofile   65536"  
+  - "{{ app.name }}   -   nproc    4096"  
 
 firewall_list:
   - "{{ app.port }}/tcp"

@@ -1,7 +1,7 @@
 ---
 
 - name: Bootstrap Sonarqube for Gitlab IAC 1
-  hosts: all
+  hosts: sonar
   gather_facts: false
   any_errors_fatal: true
   become: true   
