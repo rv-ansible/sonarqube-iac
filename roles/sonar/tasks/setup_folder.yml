@@ -1,0 +1,32 @@
+---
+
+# - set_fact: 
+#    fail_if_exist: true
+#    unarchive: true
+#    archive_file: "{{tmp_folder}}/sonarqube-{{app.version}}.zip"
+
+# - name: call task from another role
+#   include_role:
+#     name: rv-common
+#     tasks_from: fail_if_exist
+
+# - name: call task from another role
+#   include_role:
+#     name: rv-common
+#     tasks_from: unarchive 
+
+# - name: make run_as_user as nexus
+#   shell: |
+#          echo 'run_as_user="nexus"' > /opt/sonatype/nexus/bin/nexus.rc  
+
+- set_fact:
+    change_permission: true
+    file_mode: 0755
+    file_list:
+      - "{{ app.folder }}"
+    
+- name: call task from another role
+  include_role:
+    name: rv-common
+    tasks_from: change_permission
+    

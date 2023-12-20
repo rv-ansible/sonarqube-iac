@@ -4,19 +4,14 @@
 
 app:
    name: sonarqube
-   version: 9.1.0.47736
+   version: 9.3.0.51899
    os_user: sonar
-   os_group: sonar
    folder: /opt/sonarqube
    port: 9000
 
 tmp_folder: /tmp 
 
 url_package: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{ app.version }}.zip
-
-package_list:
-  - epel-release 
-  - java-11-openjdk-devel
 
 bashrc_env:
   - "export SONAR_JDBC_USERNAME="
