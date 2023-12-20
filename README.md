@@ -23,8 +23,7 @@ unfortunately you have to do it,
 please add it and create a pull request,_
 ```
 - epel-release
-- wget
-- java-1.8.0-openjdk.x86_64
+- java 11
 - maven
 ```
 

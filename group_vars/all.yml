@@ -1,8 +1,17 @@
 
-sonar_ver: 3.62.0-01  
-sonar_user: sonar
-git_plugin: https://github.com/AdaptiveConsulting/nexus-casc-plugin.git
-url_package: https://download.sonatype.com/nexus/3/nexus-{{ nexus_ver }}-unix.tar.gz
+app:
+   name: sonarqube
+   version: 9.1.0.47736
+   os_user: sonar
+   os_group: sonar
+   folder: /opt/sonarqube
+
+url_package: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{ app.version }}.zip
+
+
+package_list:
+  - epel-release 
+  - java-11-openjdk-devel
 
 bashrc_env:
   - "export BASE_URL=http://{{ ansible_hostname }}:8081"
@@ -14,3 +23,7 @@ bashrc_env:
   - "export SONATYPE_WORK=/opt/sonatype/sonatype-work"  
   - "export HOME=/opt/sonatype/nexus"   
   - "export PWD=/opt/sonatype"  
+
+security_limits_list:
+  - "sonarqube   -   nofile   65536"  
+  - "sonarqube   -   nproc    4096"  

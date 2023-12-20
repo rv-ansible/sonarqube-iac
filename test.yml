@@ -1,19 +1,23 @@
 ---
 
+# This is for testing, test it first here...
+
 - name: testing
-  hosts: localhost ansible_user='{{ lookup("env", "ansible_user") }}' ansible_password='{{ lookup("env", "ansible_password") }}' gather_facts=no ansible_connection=local
+  hosts: sonar
+         #localhost ansible_user='{{ lookup("env", "ansible_user") }}' ansible_password='{{ lookup("env", "ansible_password") }}' gather_facts=no ansible_connection=local
+
   gather_facts: false
   # become: true
   vars:
     testy: "test"
 
   tasks: 
-    - shell: echo {{ groups['plugin'] }} 
-      register: reg
-    - set_fact: 
-        vm_name: '{{ reg.stdout | replace("[","") | replace("]","") }}'
-    - debug: 
-        msg: "{{vm_name}}"   
+    # - shell: echo {{ groups['sonar'] }} 
+    #   register: reg
+    # - set_fact: 
+    #     vm_name: '{{ reg.stdout | replace("[","") | replace("]","") }}'
+    # - debug: 
+    #     msg: "{{vm_name}}"   
     # - shell: echo {{ ansible_hostname }} > /tmp/host
     # - ping: 
     # - shell: ls /root
@@ -21,5 +25,6 @@
     # - shell: echo "{{testy}}"
     #   register: reg
     # - debug: var=reg
+    - shell: cat /etc/security/limits.conf
     
     

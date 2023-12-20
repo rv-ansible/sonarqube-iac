@@ -2,15 +2,18 @@
 
 - name: Bootstrap Sonarqube for Gitlab IAC 1
   hosts: all
+  gather_facts: false
   any_errors_fatal: true
   become: true   
-  vars:
-    package_list:
-      - epel-release 
-      - java-1.8.0-openjdk.x86_64 
   roles: 
     - { role: rv-common, update: true }
     - { role: rv-common, download_bin: true } 
+    - { role: rv-common, security_limits: true } 
+    - { role: rv-common, adduser: true }  
+    - { role: rv-common, download_package: true } 
+  tags: 
+    - deploy_centos8
+    - iac1
 
 # - name: Bootstrap Sonarqube for Gitlab IAC 2
 #   hosts: nexus
