@@ -38,7 +38,7 @@ Make sure ansible_user have sudo access on the target vm.
 
 Run the ansible in cli,
 ```
-ansible-playbook -i inventory/linux.ini deploy.yml -v
+ansible-playbook -i inventory/linux.ini deploy.yml -v --tags deploy_centos8
 ```
 
 ***The version or tag is defined on the variable of group_vars/all.***</br>
