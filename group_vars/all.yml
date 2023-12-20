@@ -1,3 +1,6 @@
+#############################
+# deploy_sonarqube_iac #
+#############################
 
 app:
    name: sonarqube
@@ -5,6 +8,7 @@ app:
    os_user: sonar
    os_group: sonar
    folder: /opt/sonarqube
+   port: 9000
 
 url_package: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{ app.version }}.zip
 
@@ -14,16 +18,13 @@ package_list:
   - java-11-openjdk-devel
 
 bashrc_env:
-  - "export BASE_URL=http://{{ ansible_hostname }}:8081"
-  - "export NEXUS_HOME=/opt/sonatype/nexus"
-  - "export NEXUS_CASC_CONFIG=/opt/nexus.yml"   
-  - "export NEXUS_UI_PORT=8081"   
-  - "export PLUGIN_VERSION={{ nexus_ver }}"   
-  - "export SONATYPE_DIR=/opt/sonatype"   
-  - "export SONATYPE_WORK=/opt/sonatype/sonatype-work"  
-  - "export HOME=/opt/sonatype/nexus"   
-  - "export PWD=/opt/sonatype"  
+  - "export SONAR_JDBC_USERNAME="
+  - "export SONAR_JDBC_PASSWORD="
+  - "export SONAR_JDBC_URL="
 
 security_limits_list:
   - "sonarqube   -   nofile   65536"  
   - "sonarqube   -   nproc    4096"  
+
+firewall_list:
+  - "{{ app.port }}/tcp"
