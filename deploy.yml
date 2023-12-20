@@ -2,11 +2,10 @@
 
 - name: Bootstrap Sonarqube for Gitlab IAC 1
   hosts: sonar
-  gather_facts: false
   any_errors_fatal: true
   become: true   
   roles: 
-    - { role: rv-common, update: true }
+    - { role: rv-common, update_os: true }
     - { role: rv-common, download_bin: true } 
     - { role: rv-common, security_limits: true } 
     - { role: rv-common, adduser: true }  

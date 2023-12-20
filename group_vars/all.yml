@@ -10,8 +10,9 @@ app:
    folder: /opt/sonarqube
    port: 9000
 
-url_package: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{ app.version }}.zip
+tmp_folder: /tmp 
 
+url_package: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{ app.version }}.zip
 
 package_list:
   - epel-release 

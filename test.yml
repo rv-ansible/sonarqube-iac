@@ -25,6 +25,7 @@
     # - shell: echo "{{testy}}"
     #   register: reg
     # - debug: var=reg
-    - shell: cat /etc/security/limits.conf
+    # - shell: cat /etc/security/limits.conf
+    - shell: ls -la /tmp/*.zip
     
     
