@@ -1,6 +1,5 @@
 # sonarqube-iac
-
-Sonarqube for Gitlab Infrastructure As Code using vm.
+Sonarqube for Gitlab Infrastructure As Code
 
 
 ### Prerequisites
@@ -24,7 +23,7 @@ please add it and create a pull request,_
 ```
 - epel-release
 - java 11
-- maven
+- zip
 ```
 
 ### Instructions
@@ -43,3 +42,9 @@ ansible-playbook -i inventory/linux.ini deploy.yml -v --tags deploy_centos8
 
 ***The version or tag is defined on the variable of group_vars/all.***</br>
 ***The docker I haven't started it yet but if you can please create a pull request.***</br>
+
+### TIPS
+***if you only want to test download_bin task on iac1***
+```
+ansible-playbook -i inventory/linux.ini deploy.yml -v --tags iac1 --extra-vars "update_os=false"
+```

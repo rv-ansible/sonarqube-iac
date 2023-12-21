@@ -1,20 +1,20 @@
 ---
 
-- name: Start nexus with script
-  ansible.builtin.command: /opt/nexus.sh
-  async: 45
-  poll: 0
+# - name: Start sonar with script
+#   ansible.builtin.command: /opt/sonar.sh
+#   async: 45
+#   poll: 0
 
-- name: Wait for nexus to start listening on port 8081
-  ansible.builtin.wait_for:
-    port: 8081
-    host: 0.0.0.0
-  ignore_errors: true  
+# - name: Wait for sonar to start listening on port 9000
+#   ansible.builtin.wait_for:
+#     port: "{{ app.port }}"
+#     host: 0.0.0.0
+#   ignore_errors: true  
 
-- name: Pause for 5 seconds
-  ansible.builtin.pause:
-    seconds: 5    
+# - name: Pause for 5 seconds
+#   ansible.builtin.pause:
+#     seconds: 5    
 
-- name: Stop nexus with kill
-  shell: kill -9 `ps -ef|grep nexus|grep java-1.8.0-openjdk|awk '{print $2}'`
-  ignore_errors: true
+# - name: Stop sonar with kill
+#   shell: kill -9 `ps -ef|grep sonar|grep java-1.8.0-openjdk|awk '{print $2}'`
+#   ignore_errors: true

@@ -5,7 +5,7 @@
     archive_file: "{{tmp_folder}}/sonarqube-{{app.version}}.zip"
     folder: "{{app.folder}}"
 
-- name: call task from another role
+- name: Check if {{app.folder}} exist
   include_role:
     name: rv-common
     tasks_from: fail_if_exist
@@ -14,13 +14,24 @@
     folder: /opt
     unarchive: true
 
-- name: call task from another role
+- name: Unarchive package
   include_role:
     name: rv-common
     tasks_from: unarchive 
 
 - name: Rename sonarqube
-  shell: "mv /opt/sonarqube-{{app.version}} {{app.folder}}"        
+  shell: "mv /opt/sonarqube-{{app.version}} {{app.folder}}"   
+
+- set_fact:
+    update_file: true
+    folder_path: "{{app.folder}}/bin/linux-x86-64/sonar.sh"
+    search_string: "#RUN_AS_USER="
+    new_string: 'RUN_AS_USER="sonar"'  
+
+- name: Set sonar as user
+  include_role:
+    name: rv-common
+    tasks_from: update_file       
 
 - set_fact:
     change_permission: true
@@ -30,7 +41,7 @@
     file_list:
       - "{{ app.folder }}"
     
-- name: call task from another role
+- name: Change the permission recursively of app folder
   include_role:
     name: rv-common
     tasks_from: change_permission

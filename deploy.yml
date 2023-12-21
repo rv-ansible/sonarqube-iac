@@ -28,37 +28,25 @@
     - { role: rv-common, security_limits: true } 
     - { role: rv-common, allowport: true }  
     - { role: rv-common, download_package: true }      
-    - { role: sonar, setup_folder: true }     
+    - { role: sonar, setup_folder: true }  
+    - { role: sonar, setup_startup: true }    
     # - { role: rv-common, setup_bashrc: true } 
   tags: 
     - deploy_centos8
     - iac2
 
-- name: Bootstrap Sonarqube for Gitlab IAC 3
-  hosts: sql
-  any_errors_fatal: true
-  become: true   
-  vars:  
-    package_list:
-      - psql
-  roles: 
-    - { role: rv-common, download_package: true } 
-    - { role: rv-common, download_bin: true } 
-    - { role: sonar, get_plugin: true } 
-  tags: 
-    - deploy_centos8
-    - iac3
+# - name: Bootstrap Sonarqube for Gitlab IAC 3
+#   hosts: sql
+#   any_errors_fatal: true
+#   become: true   
+#   vars:  
+#     package_list:
+#       - psql
+#   roles: 
+#     - { role: rv-common, download_package: true } 
+#     - { role: rv-common, download_bin: true } 
+#     - { role: sonar, get_plugin: true } 
+#   tags: 
+#     - deploy_centos8
+#     - iac3
 
-- name: Bootstrap Sonarqube for Gitlab IAC 4
-  hosts: sonar
-  any_errors_fatal: true
-  become: true   
-  vars:     
-  roles:
-    - { role: rv-common, download_package: true }   
-    - { role: sonar, setup_folder: true }   
-    - { role: sonar, setup_startup: true }   
-    - { role: sonar, copy_plugin: true } 
-  tags: 
-    - deploy_centos8
-           
