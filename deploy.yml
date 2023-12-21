@@ -24,7 +24,7 @@
       - zip
   roles: 
     - { role: rv-common, download_bin: true } 
-    - { role: rv-common, adduser: true }     
+    - { role: rv-common, adduser: true, os_user: "{{app.os_user}}" }     
     - { role: rv-common, security_limits: true } 
     - { role: rv-common, allowport: true }  
     - { role: rv-common, download_package: true }      

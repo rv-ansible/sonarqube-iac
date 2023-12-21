@@ -3,11 +3,11 @@
 #############################
 
 app:
-   name: sonarqube
-   version: 9.3.0.51899
-   os_user: sonar
-   folder: /opt/sonarqube
-   port: 9000
+  name: sonarqube
+  version: 9.3.0.51899
+  os_user: sonar
+  folder: /opt/sonarqube
+  port: 9000
 
 tmp_folder: /tmp 
 

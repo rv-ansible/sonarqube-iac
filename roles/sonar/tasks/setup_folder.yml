@@ -1,24 +1,32 @@
 ---
 
 - set_fact: 
-   fail_if_exist: true
-   unarchive: true
-   archive_file: "{{tmp_folder}}/sonarqube-{{app.version}}.zip"
+    fail_if_exist: true
+    archive_file: "{{tmp_folder}}/sonarqube-{{app.version}}.zip"
+    folder: "{{app.folder}}"
 
 - name: call task from another role
   include_role:
     name: rv-common
     tasks_from: fail_if_exist
 
+- set_fact:
+    folder: /opt
+    unarchive: true
+
 - name: call task from another role
   include_role:
     name: rv-common
     tasks_from: unarchive 
 
+- name: Rename sonarqube
+  shell: "mv /opt/sonarqube-{{app.version}} {{app.folder}}"        
+
 - set_fact:
     change_permission: true
     file_mode: 0755
     recursive: yes
+    os_user: "{{ app.os_user }}"
     file_list:
       - "{{ app.folder }}"
     
