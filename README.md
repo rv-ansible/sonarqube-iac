@@ -15,7 +15,7 @@ ansible-galaxy install -r roles/requirements.yml
 ### Requirements
 - centos8/stream with sudo access
 - internet access
-- dns server, if none, use /etc/hosts or ansible inventory
+- dns server, if none, use ansible inventory
 
 _If firewalled, you need these binaries, 
 unfortunately you have to do it, 
