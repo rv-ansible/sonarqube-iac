@@ -1,5 +1,5 @@
 # sonarqube-iac
-Sonarqube for Gitlab Infrastructure As Code
+Sonarqube for Gitlab setup as Infrastructure As Code
 
 
 ### Prerequisites
